@@ -2,10 +2,8 @@ def create_command(command: str) -> str:
     """
     Creates script with definition and command given in parameter.
     """
-    a = METHODS + '  $ 2 "Robot Program"\n' + command + "\nend\n"
-    print(a)
-    return a
-
+    return METHODS + '  $ 2 "Robot Program"\n' + command + "\nend\n"
+    
 
 METHODS = """def gripper_open():
   global _hidden_verificationVariable=0

@@ -14,8 +14,12 @@ s.connect((HOST, PORT))
 # RUN PROGRAM
 
 time.sleep(1)
+
 open_and_wait(s=s)
 close_and_wait(s=s)
-current_pos_mm(s=s)
+gripper_led_off(s=s)
+gripper_led_on(s=s)
+move_and_wait_mm(s=s, position=10)
+
 time.sleep(1)
 s.close()
