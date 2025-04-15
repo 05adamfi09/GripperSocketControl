@@ -3,10 +3,10 @@ name = "GripperSocketControl"
 version = "0.1.0"
 description = "Package for handling Robotiq gripper connected in Universal Robots UR3e."
 readme = "README.md"
-requires-python = ">=3.10.9"
+requires-python = ">=3.10"
 license = {text = "MIT"}
 authors = [
-  { name = "Filip Adámek", email = "05adamfi09@gmail.com" }
+  { name = "Filip Adámek", email = "05adamfi09@gmail.com" },
   { name = "Patrik Michl", email = "michl.patrik98@gmail.com" }
 ]
 classifiers = [
