@@ -15,10 +15,12 @@ classifiers = [
   "Operating System :: OS Independent",
 ]
 
+[project.dependencies]
+emoji = "^2.14.1"
+
 [project.urls]
 Repository = "https://github.com/05adamfi09/GripperSocketControl"
 Issues = "https://github.com/05adamfi09/GripperSocketControl/issues"
-
 
 [build-system]
 requires = ["setuptools>=61.0"]  # Doporučená minimální verze setuptools
