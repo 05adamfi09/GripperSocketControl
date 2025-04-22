@@ -14,9 +14,9 @@ classifiers = [
   "Programming Language :: Python :: 3.10",
   "Operating System :: OS Independent",
 ]
-
-[project.dependencies]
-emoji = "^2.14.1"
+dependencies = [
+  "emoji > 2.14.1"
+]
 
 [project.urls]
 Repository = "https://github.com/05adamfi09/GripperSocketControl"
