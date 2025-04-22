@@ -5,7 +5,7 @@ def create_command(command: str) -> str:
     return METHODS_DEFINITION + '  $ 2 "Robot Program"\n' + command + "\nend\n"
 
 
-METHODS_DEFINITION = """def gripper_open():
+METHODS_DEFINITION = """def unnamed():
   global _hidden_verificationVariable=0
   set_tcp(p[0.0,0.0,0.15,0.0,0.0,0.0])
   set_standard_analog_input_domain(0, 1)
