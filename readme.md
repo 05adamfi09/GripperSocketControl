@@ -13,7 +13,7 @@ When you are using this package, you must be in same network as a UR robot. The 
 ## Installation 
 
 ```
-pip install -i https://test.pypi.org/simple/ GripperSocketControl
+pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple GripperSocketControl
 ```
 
 ## Example

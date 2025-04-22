@@ -1,6 +1,6 @@
 [project]
 name = "GripperSocketControl"
-version = "0.2.1"
+version = "0.2.5"
 description = "Package for handling Robotiq gripper connected in Universal Robots UR3e."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -15,7 +15,7 @@ classifiers = [
   "Operating System :: OS Independent",
 ]
 dependencies = [
-  "emoji >= 2.14.1"
+  "emoji>=2.14.0",
 ]
 
 [project.urls]
@@ -23,8 +23,8 @@ Repository = "https://github.com/05adamfi09/GripperSocketControl"
 Issues = "https://github.com/05adamfi09/GripperSocketControl/issues"
 
 [build-system]
-requires = ["setuptools>=61.0"]  # Doporučená minimální verze setuptools
-build-backend = "setuptools.build_meta" # Standardní backend pro setuptools
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
 where = ["src"]
