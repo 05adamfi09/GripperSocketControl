@@ -72,8 +72,6 @@ class Gripper:
         print(f"{emoji.emojize(':upwards_button:')} Activating gripper")
         self.socket.send(create_command(
             '$ 3 "rq_activate_and_wait()"\n   rq_activate_and_wait()').encode("utf8"))
-        print(create_command(
-            '$ 3 "rq_activate_and_close()"\n   rq_activate_and_close()').encode("utf8"))
 
     def gripper_led_on(self) -> None:
         """
