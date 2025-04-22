@@ -10,11 +10,17 @@ Package was created as part of a school project, where we wanted to control Univ
 
 When you are using this package, you must be in same network as a UR robot. The package main class `Gripper` contains socket connection with UR robot. `Gripper` functions sends Universal Robots `.script` file via socket connection.
 
+## Installation 
+
+```
+pip install -i https://test.pypi.org/simple/ GripperSocketControl
+```
+
 ## Example
 
 ``` python
 import time
-from GripperSocketControl import Gripper
+from GripperSocketControl.gripper import Gripper
 
 # CONSTANTS INIT
 HOST = "192.168.0.96"

@@ -1,5 +1,5 @@
 from socket import socket, AF_INET, SOCK_STREAM
-from gripper_methods_def import create_command
+from .gripper_methods_def import create_command
 
 
 class Gripper:
@@ -74,8 +74,10 @@ class Gripper:
         :param distance: distance between gripper fingers
         """
         if 0 <= distance:
-            self.socket.send(create_command(
+            print(create_command(
                 '$ 3 "rq_move_and_wait_mm(' + str(distance) + ')"\n   rq_move_and_wait_mm(' + str(distance) + ')').encode("utf8"))
+            self.socket.send(create_command(
+                '  $ 3 "rq_move_and_wait_mm(' + str(distance) + ')"\n   rq_move_and_wait_mm(' + str(distance) + ')').encode("utf8"))
         else:
             raise ValueError("Position is out of range.")
 
