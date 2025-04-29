@@ -16,7 +16,7 @@ my_gripper.reset()  # Reset gripper
 
 time.sleep(3)
 
-my_gripper.acivate_and_wait()  # Activate gripper
+my_gripper.activate_and_wait()  # Activate gripper
 
 time.sleep(3)
 

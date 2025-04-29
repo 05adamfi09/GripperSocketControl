@@ -65,7 +65,7 @@ class Gripper:
         self.socket.send(create_command(
             '$ 3 "rq_close_and_wait()"\n   rq_close_and_wait()').encode("utf8"))
 
-    def acivate_and_wait(self) -> None:
+    def activate_and_wait(self) -> None:
         """
         Activate gripper.
         """
