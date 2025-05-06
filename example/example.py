@@ -43,3 +43,17 @@ time.sleep(2)
 my_gripper.close_connection()  # Close connection with robot
 
 time.sleep(1)
+
+my_gripper.connect()
+
+time.sleep(1)
+
+my_gripper.activate_and_wait()
+
+time.sleep(1)
+
+my_gripper.gripper_led_on()
+
+time.sleep(1)
+
+my_gripper.close_connection()

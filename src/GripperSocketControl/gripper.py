@@ -29,14 +29,16 @@ class Gripper:
         """
         self._ip_address = ip_address
         self._port = port
+        self._connected = False
 
         try:
             self.socket = socket(AF_INET, SOCK_STREAM)
 
             print(
-                f"{emoji.emojize(':globe_with_meridians:')} Connecting {ip_address}:{port}")
+                f"{emoji.emojize(':globe_with_meridians:')} Connecting {self._ip_address}:{self._port}")
             self.socket.connect((self._ip_address, self._port))
             print(f"{emoji.emojize(':check_mark_button:')} Succesfully coneted!")
+            self._connected = True
 
         except socket_error as e:
             print(f"{emoji.emojize(':cross_mark_button:')} Connecting error - {e}")
@@ -49,9 +51,7 @@ class Gripper:
         """
         Open connection with robot.
         """
-        if self.socket:
-            self.socket.connect((self._ip_address, self._port))
-        else:
+        if not self._connected:
             try:
                 self.socket = socket(AF_INET, SOCK_STREAM)
 
@@ -59,6 +59,7 @@ class Gripper:
                     f"{emoji.emojize(':globe_with_meridians:')} Connecting {self._ip_address}:{self._port}")
                 self.socket.connect((self._ip_address, self._port))
                 print(f"{emoji.emojize(':check_mark_button:')} Succesfully coneted!")
+                self._connected = True
 
             except socket_error as e:
                 print(
@@ -75,6 +76,7 @@ class Gripper:
         if self.socket:
             print(f"{emoji.emojize(':stop_sign:')} Closing socket")
             self.socket.close()
+            self._connected = False
 
     def open_and_wait(self) -> None:
         """
