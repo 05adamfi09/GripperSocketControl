@@ -9,6 +9,7 @@ class Gripper:
     Class that symbolise Robotiq Hand-E gripper.
 
     methods:
+        connect()
         close_connection()
         open_and_wait()
         close_and_wait()
@@ -26,12 +27,15 @@ class Gripper:
         :param ip_address: Universal Robots arm IP address
         :param port: gripper port, usualy 30002
         """
+        self._ip_address = ip_address
+        self._port = port
+
         try:
             self.socket = socket(AF_INET, SOCK_STREAM)
 
             print(
                 f"{emoji.emojize(':globe_with_meridians:')} Connecting {ip_address}:{port}")
-            self.socket.connect((ip_address, port))
+            self.socket.connect((self._ip_address, self._port))
             print(f"{emoji.emojize(':check_mark_button:')} Succesfully coneted!")
 
         except socket_error as e:
@@ -40,6 +44,29 @@ class Gripper:
         except Exception as e:
             print(
                 f"{emoji.emojize(':cross_mark_button:')} Unexpected error during connecting to socket - {e}")
+
+    def connect(self) -> None:
+        """
+        Open connection with robot.
+        """
+        if self.socket:
+            self.socket.connect((self._ip_address, self._port))
+        else:
+            try:
+                self.socket = socket(AF_INET, SOCK_STREAM)
+
+                print(
+                    f"{emoji.emojize(':globe_with_meridians:')} Connecting {self._ip_address}:{self._port}")
+                self.socket.connect((self._ip_address, self._port))
+                print(f"{emoji.emojize(':check_mark_button:')} Succesfully coneted!")
+
+            except socket_error as e:
+                print(
+                    f"{emoji.emojize(':cross_mark_button:')} Connecting error - {e}")
+
+            except Exception as e:
+                print(
+                    f"{emoji.emojize(':cross_mark_button:')} Unexpected error during connecting to socket - {e}")
 
     def close_connection(self) -> None:
         """
