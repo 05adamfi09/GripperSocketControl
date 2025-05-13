@@ -137,3 +137,9 @@ class Gripper:
         print(f"{emoji.emojize(':counterclockwise_arrows_button:')} Resetting gripper")
         self.socket.send(create_command(
             '$ 3 "rq_reset()"\n   rq_reset()').encode("utf8"))
+
+    def get_socket(self) -> socket:
+        """
+        Return socket instance.
+        """
+        return self.socket
