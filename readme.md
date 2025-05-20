@@ -1,6 +1,6 @@
 # Gripper Socket Control
 
-This package enables user to control Robotiq Hand-E gripper via Python.
+This package enables user to control Robotiq Hand-E gripper and UR arm via Python.
 
 ## About package
 
