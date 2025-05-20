@@ -1,3 +1,5 @@
+from typing import List
+import math
 import emoji
 from socket import socket, AF_INET, SOCK_STREAM
 from socket import error as socket_error
@@ -37,7 +39,7 @@ class Gripper:
             print(
                 f"{emoji.emojize(':globe_with_meridians:')} Connecting {self._ip_address}:{self._port}")
             self.socket.connect((self._ip_address, self._port))
-            print(f"{emoji.emojize(':check_mark_button:')} Succesfully coneted!")
+            print(f"{emoji.emojize(':check_mark_button:')} Succesfully connected!")
             self._connected = True
 
         except socket_error as e:
@@ -143,3 +145,20 @@ class Gripper:
         Return socket instance.
         """
         return self.socket
+
+    def move_j(self, joints_angles_degrees: List[float]) -> None:
+        """
+        Move robot with J move.
+        :param joints_angles: float list of size 6 with joints angles in degrees
+        """
+        if len(joints_angles_degrees) == 6:
+            joints_angles_radians: List[float] = []
+
+            for angle in joints_angles_degrees:
+                joints_angles_radians.append(math.radians(angle))
+
+            print(f"{emoji.emojize(':mechanical_arm:')} Moving robot")
+            self.socket.send(create_command(
+                f'  movej({str(joints_angles_radians)}, a=1.3962634015954636, v=1.0471975511965976)').encode("utf8"))
+        else:
+            raise ValueError("Move J parameter must be float list of size 6!")
