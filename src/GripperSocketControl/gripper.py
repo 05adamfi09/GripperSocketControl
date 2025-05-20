@@ -159,8 +159,27 @@ class Gripper:
             for angle in joints_angles_degrees:
                 joints_angles_radians.append(math.radians(angle))
 
-            print(f"{emoji.emojize(':mechanical_arm:')} Moving robot")
+            print(f"{emoji.emojize(':mechanical_arm:')} Moving robot with J move")
             self.socket.send(create_command(
                 f'  movej({str(joints_angles_radians)}, a={str(acceleration)}, v={str(speed)})').encode("utf8"))
         else:
             raise ValueError("Move J parameter must be float list of size 6!")
+
+    def move_l(self, coordinates: List[float], rotation_vector: List[float], acceleration: float = 0.5, speed: float = 0.5) -> None:
+        """
+        Move robot with L move
+        :param coordinates: float list of size 3 with BASE coordinates in meters [x, y, z]
+        :param rotation_vector: float list of size 3 with rotation vector in radians [rx, ry, rz]
+        :param acceleration: acceleration of the robotic arm in radians per second
+        :param speed: speed of the robotic arm in radians per second
+        """
+
+        if len(coordinates) == 3 and len(rotation_vector) == 3:
+            coordinates_with_rotation_vector = coordinates + rotation_vector
+
+            print(f"{emoji.emojize(':mechanical_arm:')} Moving robot with L move")
+            self.socket.send(create_command(
+                f'  movel(p{str(coordinates_with_rotation_vector)}, a={str(acceleration)}, v={str(speed)})').encode("utf8"))
+        else:
+            raise ValueError(
+                "Move L parameters must be two float lists of size 3!")
