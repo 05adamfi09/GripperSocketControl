@@ -1,6 +1,5 @@
 from typing import List
 import math
-import emoji
 from socket import socket, AF_INET, SOCK_STREAM
 from socket import error as socket_error
 from .gripper_methods_def import create_command
@@ -37,17 +36,17 @@ class Gripper:
             self.socket = socket(AF_INET, SOCK_STREAM)
 
             print(
-                f"{emoji.emojize(':globe_with_meridians:')} Connecting {self._ip_address}:{self._port}")
+                f"🌐 Connecting {self._ip_address}:{self._port}")
             self.socket.connect((self._ip_address, self._port))
-            print(f"{emoji.emojize(':check_mark_button:')} Succesfully connected!")
+            print(f"✅ Succesfully connected!")
             self._connected = True
 
         except socket_error as e:
-            print(f"{emoji.emojize(':cross_mark_button:')} Connecting error - {e}")
+            print(f"❎ Connecting error - {e}")
 
         except Exception as e:
             print(
-                f"{emoji.emojize(':cross_mark_button:')} Unexpected error during connecting to socket - {e}")
+                f"❎ Unexpected error during connecting to socket - {e}")
 
     def connect(self) -> None:
         """
@@ -58,25 +57,25 @@ class Gripper:
                 self.socket = socket(AF_INET, SOCK_STREAM)
 
                 print(
-                    f"{emoji.emojize(':globe_with_meridians:')} Connecting {self._ip_address}:{self._port}")
+                    f"🌐 Connecting {self._ip_address}:{self._port}")
                 self.socket.connect((self._ip_address, self._port))
-                print(f"{emoji.emojize(':check_mark_button:')} Succesfully coneted!")
+                print("✅ Succesfully coneted!")
                 self._connected = True
 
             except socket_error as e:
                 print(
-                    f"{emoji.emojize(':cross_mark_button:')} Connecting error - {e}")
+                    f"❎ Connecting error - {e}")
 
             except Exception as e:
                 print(
-                    f"{emoji.emojize(':cross_mark_button:')} Unexpected error during connecting to socket - {e}")
+                    f"❎ Unexpected error during connecting to socket - {e}")
 
     def close_connection(self) -> None:
         """
         Close connection with robot.
         """
         if self.socket:
-            print(f"{emoji.emojize(':stop_sign:')} Closing socket")
+            print("🛑 Closing socket")
             self.socket.close()
             self._connected = False
 
@@ -84,7 +83,7 @@ class Gripper:
         """
         Open gripper.
         """
-        print(f"{emoji.emojize(':hand_with_fingers_splayed:')}  Openning gripper")
+        print("✋ Openning gripper")
         self.socket.send(create_command(
             '$ 3 "rq_open_and_wait()"\n   rq_open_and_wait()').encode("utf8"))
 
@@ -92,7 +91,7 @@ class Gripper:
         """
         Close gripper.
         """
-        print(f"{emoji.emojize(':raised_fist:')} Closing gripper")
+        print("✊ Closing gripper")
         self.socket.send(create_command(
             '$ 3 "rq_close_and_wait()"\n   rq_close_and_wait()').encode("utf8"))
 
@@ -100,7 +99,7 @@ class Gripper:
         """
         Activate gripper.
         """
-        print(f"{emoji.emojize(':upwards_button:')} Activating gripper")
+        print("⬆️ Activating gripper")
         self.socket.send(create_command(
             '$ 3 "rq_activate_and_wait()"\n   rq_activate_and_wait()').encode("utf8"))
 
@@ -108,7 +107,7 @@ class Gripper:
         """
         Turn on gripper LED.
         """
-        print(f"{emoji.emojize(':light_bulb:')} Turning gripper LED on")
+        print("💡 Turning gripper LED on")
         self.socket.send(create_command(
             '$ 3 "rq_gripper_led_on()"\n   rq_gripper_led_on()').encode("utf8"))
 
@@ -116,7 +115,7 @@ class Gripper:
         """
         Turn off gripper LED.
         """
-        print(f"{emoji.emojize(':light_bulb:')} Turning gripper LED off")
+        print("💡 Turning gripper LED off")
         self.socket.send(create_command(
             '$ 3 "rq_gripper_led_off()"\n   rq_gripper_led_off()').encode("utf8"))
 
@@ -126,7 +125,7 @@ class Gripper:
         :param distance: distance between gripper fingers
         """
         if 0 <= distance:
-            print(f"{emoji.emojize(':rocket:')} Oppening gripper to {distance} mm")
+            print(f"🚀 Oppening gripper to {distance} mm")
             self.socket.send(create_command(
                 '  $ 3 "rq_move_and_wait_mm(' + str(distance) + ')"\n   rq_move_and_wait_mm(' + str(distance) + ')').encode("utf8"))
         else:
@@ -136,7 +135,7 @@ class Gripper:
         """
         Reset gripper.
         """
-        print(f"{emoji.emojize(':counterclockwise_arrows_button:')} Resetting gripper")
+        print("🔄 Resetting gripper")
         self.socket.send(create_command(
             '$ 3 "rq_reset()"\n   rq_reset()').encode("utf8"))
 
@@ -159,7 +158,7 @@ class Gripper:
             for angle in joints_angles_degrees:
                 joints_angles_radians.append(math.radians(angle))
 
-            print(f"{emoji.emojize(':mechanical_arm:')} Moving robot with J move")
+            print("🦾 Moving robot with J move")
             self.socket.send(create_command(
                 f'  movej({str(joints_angles_radians)}, a={str(acceleration)}, v={str(speed)})').encode("utf8"))
         else:
@@ -177,7 +176,7 @@ class Gripper:
         if len(coordinates) == 3 and len(rotation_vector) == 3:
             coordinates_with_rotation_vector = coordinates + rotation_vector
 
-            print(f"{emoji.emojize(':mechanical_arm:')} Moving robot with L move")
+            print("🦾 Moving robot with L move")
             self.socket.send(create_command(
                 f'  movel(p{str(coordinates_with_rotation_vector)}, a={str(acceleration)}, v={str(speed)})').encode("utf8"))
         else:
