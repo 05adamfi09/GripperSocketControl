@@ -146,10 +146,12 @@ class Gripper:
         """
         return self.socket
 
-    def move_j(self, joints_angles_degrees: List[float]) -> None:
+    def move_j(self, joints_angles_degrees: List[float], acceleration: float = 1.0, speed: float = 1.0) -> None:
         """
         Move robot with J move.
         :param joints_angles: float list of size 6 with joints angles in degrees
+        :param acceleration: acceleration of the robotic arm in radians per second
+        :param speed: speed of the robotic arm in radians per second
         """
         if len(joints_angles_degrees) == 6:
             joints_angles_radians: List[float] = []
@@ -159,6 +161,6 @@ class Gripper:
 
             print(f"{emoji.emojize(':mechanical_arm:')} Moving robot")
             self.socket.send(create_command(
-                f'  movej({str(joints_angles_radians)}, a=1.3962634015954636, v=1.0471975511965976)').encode("utf8"))
+                f'  movej({str(joints_angles_radians)}, a={str(acceleration)}, v={str(speed)})').encode("utf8"))
         else:
             raise ValueError("Move J parameter must be float list of size 6!")
